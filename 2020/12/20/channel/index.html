@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="通道(channel)概述 通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I&#x2F;O服务  InterruptibleChannel 是一个标记接口，当被通道使用时可以标示该通道是可以中断的   通道基础1 打开通道Socket 通道有可以直接创建新 socket 通道的工厂方法。但是一个 FileChannel对象却只能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2020/12/20/channel/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通道(channel)概述 通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I&#x2F;O服务  InterruptibleChannel 是一个标记接口，当被通道使用时可以标示该通道是可以中断的   通道基础1 打开通道Socket 通道有可以直接创建新 socket 通道的工厂方法。但是一个 FileChannel对象却只能">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="d:/mhc/study_file/知识梳理/netty/nio/image/1608106263947.png">
+<meta property="og:image" content="d:/mhc/study_file/知识梳理/netty/nio/image/1608106790795.png">
+<meta property="og:image" content="d:/mhc/study_file/知识梳理/netty/nio/image/1608106803235.png">
+<meta property="og:image" content="d:/mhc/study_file/知识梳理/netty/nio/image/1608108926247.png">
+<meta property="article:published_time" content="2020-12-20T01:58:19.756Z">
+<meta property="article:modified_time" content="2020-12-17T01:29:52.826Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/mhc/study_file/知识梳理/netty/nio/image/1608106263947.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-channel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/20/channel/" class="article-date">
+  <time datetime="2020-12-20T01:58:19.756Z" itemprop="datePublished">2020-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="通道-channel"><a href="#通道-channel" class="headerlink" title="通道(channel)"></a>通道(channel)</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li><p>通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I/O服务</p>
+</li>
+<li><p><em>InterruptibleChannel</em> 是一个标记接口，当被通道使用时可以标示该通道是可以中断的</p>
+</li>
+</ul>
+<h2 id="通道基础"><a href="#通道基础" class="headerlink" title="通道基础"></a>通道基础</h2><h3 id="1-打开通道"><a href="#1-打开通道" class="headerlink" title="1 打开通道"></a>1 打开通道</h3><p>Socket 通道有可以直接创建新 socket 通道的工厂方法。但是一个 FileChannel对象却只能通过在一个打开的 <em>RandomAccessFile</em>、<em>FileInputStream</em> 或 <em>FileOutputStream</em> 对象上调用 *getChannel( )*方法来获取。</p>
+<ul>
+<li><p>SocketChannel sc = SocketChannel.open( );</p>
+</li>
+<li><p>FileChannel fc = raf.getChannel( );</p>
+</li>
+<li><p>getChannel虽然 能返回一个相应的 socket 通道对象，但它们却并非新通道的来源，RandomAccessFile.getChannel( )方法才是。</p>
+</li>
+</ul>
+<h3 id="2-使用通道"><a href="#2-使用通道" class="headerlink" title="2 使用通道"></a>2 使用通道</h3><p>如果 一个类同时实现这<em>ReadableByteChannel</em>，<em>WritableByteChannel</em>两个接口，那么它是双向的，可以双向传输数据</p>
+<h2 id="Scatter-Gather"><a href="#Scatter-Gather" class="headerlink" title="Scatter/Gather"></a>Scatter/Gather</h2><ul>
+<li><p>用一个 gather 操作将多个缓冲区的数据组合并发送出去。图 3-5 描述了一个 gather 写操作。数据从缓冲区阵列引用的每个缓冲区中 gather 并被组合成沿 着通道发送的字节流。</p>
+</li>
+<li><p>图3-6 描述了一个 scatter 读操作。从通道传输来的数据被 scatter 到所列缓冲区，依次填充每个 </p>
+<p>缓冲区（从缓冲区的 position 处开始到 limit 处结束）。这里显示的 position 和 limit 值是读操作开 </p>
+<p>始之前的。</p>
+</li>
+</ul>
+<p><img src="D:\mhc\study_file\知识梳理\netty\nio\image\1608106263947.png" alt="1608106263947"></p>
+<ul>
+<li><p>write和read操作</p>
+<ul>
+<li><p>带 offset 和 length 参数版本的 <em>read( )</em> 和 *write( )*方法使得我们可以使用缓冲区阵列的子集 </p>
+<p>缓冲区。这里的 offset 值指哪个缓冲区将开始被使用，而不是指数据的 offset。这里的 length 参 </p>
+<p>数指示要使用的缓冲区数量。</p>
+<p>int bytesRead = channel.write (fiveBuffers, 1, 3);</p>
+</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>它节省了您来回移动数据的工作，也就避免了缓冲区拷贝和减少了您需要编写、调试的代码数量。由操作系统已经被高度优化来完成此类工作</li>
+</ul>
+</li>
+</ul>
+<h2 id="文件通道"><a href="#文件通道" class="headerlink" title="文件通道"></a>文件通道</h2><ul>
+<li><p>文件通道总是阻塞式的，因此不能被置于非阻塞模式</p>
+</li>
+<li><p><em>FileChannel</em>对象不能直接创建。一个<em>FileChannel</em>实例只能通过在一个打开的file对象（<em>RandomAccessFile</em>、<em>FileInputStream</em>或 <em>FileOutputStream</em>）上调用*getChannel( )*方法 </p>
+<p>获取</p>
+</li>
+<li><p><em>FileChannel</em> 对象是线程安全（thread-safe）的</p>
+</li>
+</ul>
+<p><img src="D:\mhc\study_file\知识梳理\netty\nio\image\1608106790795.png" alt="1608106790795"></p>
+<p><img src="D:\mhc\study_file\知识梳理\netty\nio\image\1608106803235.png" alt="1608106803235"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">FileChannel</span> <span class="keyword">extends</span> <span class="title">AbstractChannel</span> <span class="keyword">implements</span> <span class="title">ByteChannel</span>, <span class="title">GatheringByteChannel</span>, <span class="title">ScatteringByteChannel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// This is a partial API listing</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">long</span> <span class="title">position</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">position</span> <span class="params">(<span class="keyword">long</span> newPosition)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">(ByteBuffer dst)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">(ByteBuffer dst, <span class="keyword">long</span> position)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">write</span> <span class="params">(ByteBuffer src)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">write</span> <span class="params">(ByteBuffer src, <span class="keyword">long</span> position)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">long</span> <span class="title">size</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">truncate</span> <span class="params">(<span class="keyword">long</span> size)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">force</span> <span class="params">(<span class="keyword">boolean</span> metaData)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>有两种形式的*position( )*方法。第一种，不带参数的，返回当 前文件的position值。返回值是一个长整型（long），表示文件中的当前字节位置; 可以 把 position 设置到超出文件尾，这样做会把 position 设置为指定值而不改变文件大小。</p>
+</li>
+<li><p>倘若此时实现的是一个 *write( )*方法则会引起文件增长以容纳写入的字节，具体行为类似于实现一个绝对 *write( )*并可能导致出现一个文件空洞（假如数据被写入到文件中非连续的位置上，这将导致文件出现在逻辑上不包含数据的区域），如果该文件被顺序读取的话，所有空洞都会被“0”填充但不占用磁盘空间。读取该文件的大小 进程会看到 5,000,021 个字节</p>
+</li>
+<li><p>如果 position 值达到了文件大小的值（文件大小的值可以通过 <em>size( )<em>方法返回），</em>read( )</em> </p>
+<p>方法会返回一个文件尾条件值（-1）。可是，不同于缓冲区的是，如果实现 *write( )*方法时 position </p>
+<p>前进到超过文件大小的值，该文件会扩展以容纳新写入的字节。 </p>
+</li>
+<li><p>当需要减少一个文件的 size 时，*truncate( )*方法会砍掉您所指定的新 size 值之外的所有数据。 </p>
+<p>如果当前 size 大于新 size，超出新 size 的所有字节都会被悄悄地丢弃。</p>
+<p>public abstract void truncate (long size)</p>
+</li>
+<li><p>*force( )*。该方法告诉通道强制将全部待定的修改都应用到磁盘的 文件上。（所有的现代文件系统都会缓存数据和延迟磁盘文件更新以提高性能。调用 *force( )*方法要求文件的所有待定修改立即同步到磁盘。）</p>
+<ul>
+<li><p>force操作意义</p>
+<ul>
+<li><p>对于关键操作如事务 （transaction）处理来说，这一点是非常重要的，可以保证数据完整性和可靠的恢复。</p>
+</li>
+<li><p>对于需要特别保证数据完整性的应用程序，请务必验证一下您计划部署该程序的操作环境的性能。</p>
+</li>
+<li><p>public abstract void force (boolean metaData)；</p>
+<ul>
+<li> *force( )*方法传递 false 值表示在方法返回前只需要同步文件数据的更 改。同步元数据要求操作系统进行至少一次额外的底层 I/O 操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件锁"><a href="#文件锁" class="headerlink" title="文件锁"></a>文件锁</h3><ul>
+<li><p>文件锁定特性在很大程度上依赖本地的操作系统实现。并非所有的操作系统和文件系统都支持 </p>
+<p>共享文件锁。对于那些不支持的，对一个共享锁的请求会被自动提升为对独占锁的请求。这</p>
+</li>
+<li><p>例如，如果所有的锁都是强制性的（mandatory）而您不及时释放您获得的锁的话，运行在同一操作系统上的其他程序可能会受到影响。</p>
+</li>
+<li><p>要获得一个共享 锁，您必须先以只读权限打开文件，而请求独占锁时则需要写权限。另外，您提供的 position 和 size 参数的值不能是负数；锁可以扩展从而超出文件尾；</p>
+</li>
+<li><p>然后文件增长超出了那块区域，那么新增加 的文件内容将不会受到您的文件锁的保护</p>
+<p>fileChannel.lock (0L, Long.MAX_VALUE, false);</p>
+</li>
+<li><p><em>FileLock</em> 类封装一个锁定的文件区域。一个 <em>FileLock</em> 对象创建之后即有效，直到它的 *release( )*方法被调用或它所关联的通道被关闭或 Java 虚拟机关闭时才会失效。</p>
+</li>
+<li><p>您可以通过调用 *isShared( )*方法来测试一个锁以判断它是共享的还是独占的。</p>
+</li>
+<li><p>在使用完一个锁后而不释放它的话，可能会导致 冲突或者死锁。</p>
+</li>
+<li><p>锁与文件关联，而不是与通道关联。我们使用锁来判优外部进程，而不是判同一个 Java 虚拟机上的线程。</p>
+</li>
+</ul>
+<h3 id="内存映射文件"><a href="#内存映射文件" class="headerlink" title="内存映射文件"></a>内存映射文件</h3><ul>
+<li><p>如果您需要控制多个 Java 线程的并发访问，您可能需要实施您自己的、轻量级的锁定方案。那种情形下，内存映射文件（本章后面会进行详述）可能是一个合适的选择。</p>
+</li>
+<li><p>新的 <em>FileChannel</em> 类提供了一个名为 <em>map( )*的方法，该方法可以在一个打开的文件和一个特殊类型的 *ByteBuffer</em> 之间建立一个虚拟内存映射</p>
+</li>
+<li><p>在 <em>FileChannel</em> 上调用 <em>map( )*方法会创建一个由磁盘文件支持的虚拟内存映射（virtual memory mapping）并在那块虚拟内存空间外部封装一个 *MappedByteBuffer</em> 对象（参见 图 1-6）</p>
+</li>
+</ul>
+<p><img src="D:\mhc\study_file\知识梳理\netty\nio\image\1608108926247.png" alt="1608108926247"></p>
+<ul>
+<li>如果数据缓冲区是按页对齐的，且大小是内建页大小的倍数，那 么，对大多数操作系统而言，其处理效率会大幅提升。（但前提条件是，内核与用户缓冲区必须使用相同的页对齐，缓冲区的大小还必须是磁盘控制器块大小（通常为 512 字节磁盘扇区）的倍<br> 数。操作系统把内存地址空间划分为页，即固定大小的字节组）</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/20/channel/" data-id="ckiwhew3j000020szce0i02h7" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/12/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E9%81%93-channel"><span class="toc-number">1.</span> <span class="toc-text">通道(channel)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E9%81%93%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.</span> <span class="toc-text">通道基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80%E9%80%9A%E9%81%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">1 打开通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E9%80%9A%E9%81%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">2 使用通道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scatter-Gather"><span class="toc-number">1.3.</span> <span class="toc-text">Scatter&#x2F;Gather</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%80%9A%E9%81%93"><span class="toc-number">1.4.</span> <span class="toc-text">文件通道</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%94%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">文件锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">内存映射文件</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2020 John Doe&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      Contact&nbsp;|&nbsp;youemail@outlook.com
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>
