@@ -111,7 +111,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/" data-id="ckiy39ifi0002xwszgs2q3utb" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/" data-id="ckiy5mxkz0002m4szeqms78zv" class="article-share-link">分享</a>
       
       
       
@@ -161,7 +161,7 @@
 <p>始之前的。</p>
 </li>
 </ul>
-<p><img src="image/1608106263947.png" alt="1608106263947"></p>
+<p><img src="/image/1608106263947.png" alt="1608106263947"></p>
 <ul>
 <li><p>write和read操作</p>
 <ul>
@@ -187,7 +187,7 @@
 <li><p><em>FileChannel</em> 对象是线程安全（thread-safe）的</p>
 </li>
 </ul>
-<p><img src="image/1608106790795.png" alt="1608106790795"></p>
+<p><img src="/image/1608106790795.png" alt="1608106790795"></p>
 <p><img src="D:\mhc\study_file\知识梳理\netty\nio\image\1608106803235.png" alt="1608106803235"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">FileChannel</span> <span class="keyword">extends</span> <span class="title">AbstractChannel</span> <span class="keyword">implements</span> <span class="title">ByteChannel</span>, <span class="title">GatheringByteChannel</span>, <span class="title">ScatteringByteChannel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// This is a partial API listing</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">long</span> <span class="title">position</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">position</span> <span class="params">(<span class="keyword">long</span> newPosition)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">(ByteBuffer dst)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">(ByteBuffer dst, <span class="keyword">long</span> position)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">write</span> <span class="params">(ByteBuffer src)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">write</span> <span class="params">(ByteBuffer src, <span class="keyword">long</span> position)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">long</span> <span class="title">size</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">truncate</span> <span class="params">(<span class="keyword">long</span> size)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">force</span> <span class="params">(<span class="keyword">boolean</span> metaData)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
 <ul>
@@ -249,7 +249,7 @@
 <li><p>在 <em>FileChannel</em> 上调用 <em>map( )*方法会创建一个由磁盘文件支持的虚拟内存映射（virtual memory mapping）并在那块虚拟内存空间外部封装一个 *MappedByteBuffer</em> 对象（参见 图 1-6）</p>
 </li>
 </ul>
-<p><img src="image/1608108926247.png" alt="1608108926247"></p>
+<p><img src="/image/1608108926247.png" alt="1608108926247"></p>
 <ul>
 <li>如果数据缓冲区是按页对齐的，且大小是内建页大小的倍数，那 么，对大多数操作系统而言，其处理效率会大幅提升。（但前提条件是，内核与用户缓冲区必须使用相同的页对齐，缓冲区的大小还必须是磁盘控制器块大小（通常为 512 字节磁盘扇区）的倍<br> 数。操作系统把内存地址空间划分为页，即固定大小的字节组）</li>
 </ul>
@@ -257,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/channel/" data-id="ckiy39ifb0000xwsz2m1rdl4q" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/20/channel/" data-id="ckiy5mxks0000m4szfhjj91et" class="article-share-link">分享</a>
       
       
       
@@ -306,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/hello-world/" data-id="ckiy39ifh0001xwsz6him9x8b" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/20/hello-world/" data-id="ckiy5mxky0001m4sz9pia6d5m" class="article-share-link">分享</a>
       
       
       
