@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>xtzgg的个人博客</title>
+  <title>通道(channel) | xtzgg的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通道(channel)概述 通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I&#x2F;O服务  InterruptibleChannel 是一个标记接口，当被通道使用时可以标示该通道是可以中断的   通道基础1 打开通道Socket 通道有可以直接创建新 socket 通道的工厂方法。但是一个 FileChannel对象却只能">
+  <meta name="description" content="概述 通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I&#x2F;O服务 InterruptibleChannel 是一个标记接口，当被通道使用时可以标示该通道是可以中断的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xtzgg的个人博客">
+<meta property="og:title" content="通道(channel)">
 <meta property="og:url" content="https://xtzgg.github.io/2020/12/20/channel/index.html">
 <meta property="og:site_name" content="xtzgg的个人博客">
-<meta property="og:description" content="通道(channel)概述 通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I&#x2F;O服务  InterruptibleChannel 是一个标记接口，当被通道使用时可以标示该通道是可以中断的   通道基础1 打开通道Socket 通道有可以直接创建新 socket 通道的工厂方法。但是一个 FileChannel对象却只能">
+<meta property="og:description" content="概述 通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I&#x2F;O服务 InterruptibleChannel 是一个标记接口，当被通道使用时可以标示该通道是可以中断的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://xtzgg.github.io/2020/12/20/channel/image/1608106263947.png">
 <meta property="og:image" content="https://xtzgg.github.io/2020/12/20/channel/image/1608106790795.png">
 <meta property="og:image" content="d:/mhc/study_file/知识梳理/netty/nio/image/1608106803235.png">
 <meta property="og:image" content="https://xtzgg.github.io/2020/12/20/channel/image/1608108926247.png">
 <meta property="article:published_time" content="2020-12-20T01:58:19.756Z">
-<meta property="article:modified_time" content="2020-12-21T04:58:10.186Z">
+<meta property="article:modified_time" content="2020-12-21T09:13:35.833Z">
 <meta property="article:author" content="xtzgg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://xtzgg.github.io/2020/12/20/channel/image/1608106263947.png">
@@ -85,16 +85,26 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      通道(channel)
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <!-- Table of Contents -->
         
-        <h1 id="通道-channel"><a href="#通道-channel" class="headerlink" title="通道(channel)"></a>通道(channel)</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
-<li><p>通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I/O服务</p>
-</li>
-<li><p><em>InterruptibleChannel</em> 是一个标记接口，当被通道使用时可以标示该通道是可以中断的</p>
-</li>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I/O服务</li>
+<li><em>InterruptibleChannel</em> 是一个标记接口，当被通道使用时可以标示该通道是可以中断的</li>
 </ul>
+<a id="more"></a>
+
 <h2 id="通道基础"><a href="#通道基础" class="headerlink" title="通道基础"></a>通道基础</h2><h3 id="1-打开通道"><a href="#1-打开通道" class="headerlink" title="1 打开通道"></a>1 打开通道</h3><p>Socket 通道有可以直接创建新 socket 通道的工厂方法。但是一个 FileChannel对象却只能通过在一个打开的 <em>RandomAccessFile</em>、<em>FileInputStream</em> 或 <em>FileOutputStream</em> 对象上调用 *getChannel( )*方法来获取。</p>
 <ul>
 <li><p>SocketChannel sc = SocketChannel.open( );</p>
@@ -209,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/channel/" data-id="ckiybi0t400012ksz4ii0chld" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/20/channel/" data-id="ckiychdbb0001eksz67p709wq" class="article-share-link">分享</a>
       
       
       
@@ -263,20 +273,15 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          使用Hexo生成博客
+          Hexo实现个人博客
         
       </div>
     </a>
   
-  
-    <a href="/2020/12/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
   
 </nav>
 
@@ -311,7 +316,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E9%81%93-channel"><span class="toc-number">1.</span> <span class="toc-text">通道(channel)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E9%81%93%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.</span> <span class="toc-text">通道基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80%E9%80%9A%E9%81%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">1 打开通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E9%80%9A%E9%81%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">2 使用通道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scatter-Gather"><span class="toc-number">1.3.</span> <span class="toc-text">Scatter&#x2F;Gather</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%80%9A%E9%81%93"><span class="toc-number">1.4.</span> <span class="toc-text">文件通道</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%94%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">文件锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">内存映射文件</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E9%81%93%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text">通道基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80%E9%80%9A%E9%81%93"><span class="toc-number">2.1.</span> <span class="toc-text">1 打开通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E9%80%9A%E9%81%93"><span class="toc-number">2.2.</span> <span class="toc-text">2 使用通道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scatter-Gather"><span class="toc-number">3.</span> <span class="toc-text">Scatter&#x2F;Gather</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%80%9A%E9%81%93"><span class="toc-number">4.</span> <span class="toc-text">文件通道</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%94%81"><span class="toc-number">4.1.</span> <span class="toc-text">文件锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">内存映射文件</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>

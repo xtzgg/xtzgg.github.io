@@ -1,1 +1,1 @@
-[{"title":"article title","date":"2020.12.21","uri":"2020/12/21/article-title/","excerpt":""},{"title":"","date":"2020.12.20","uri":"2020/12/20/channel/","excerpt":""},{"title":"Hello World","date":"2020.12.20","uri":"2020/12/20/hello-world/","excerpt":""},{"title":"使用Hexo生成博客","date":"2020.12.20","uri":"2020/12/20/使用Hexo生成博客/","excerpt":""}]
+[{"title":"Hexo实现个人博客","date":"2020.12.20","uri":"2020/12/20/Hexo实现个人博客/","excerpt":""},{"title":"通道(channel)","date":"2020.12.20","uri":"2020/12/20/channel/","excerpt":""}]

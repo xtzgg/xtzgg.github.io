@@ -70,49 +70,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-article-title" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Hexo实现个人博客" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/12/21/article-title/" class="article-date">
-  <time datetime="2020-12-21T08:32:08.000Z" itemprop="datePublished">2020-12-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/21/article-title/">article title</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/21/article-title/" data-id="ckiybi0t000002kszbhlz903r" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-使用Hexo生成博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/" class="article-date">
+    <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
   <time datetime="2020-12-20T14:56:09.403Z" itemprop="datePublished">2020-12-20</time>
 </a>
     
@@ -124,7 +84,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/">使用Hexo生成博客</a>
+      <a class="article-title" href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo实现个人博客</a>
     </h1>
   
 
@@ -138,13 +98,13 @@
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> <span class="string">npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
-            <a href="/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/#more">继续阅读全文 »</a>
+            <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more">继续阅读全文 »</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/" data-id="ckiybi0t700032ksz2511f40h" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckiychdb50000ekszhdcl53ka" class="article-share-link">分享</a>
       
       
       
@@ -166,157 +126,11 @@
   <div class="article-inner">
     
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="通道-channel"><a href="#通道-channel" class="headerlink" title="通道(channel)"></a>通道(channel)</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
-<li><p>通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I/O服务</p>
-</li>
-<li><p><em>InterruptibleChannel</em> 是一个标记接口，当被通道使用时可以标示该通道是可以中断的</p>
-</li>
-</ul>
-<h2 id="通道基础"><a href="#通道基础" class="headerlink" title="通道基础"></a>通道基础</h2><h3 id="1-打开通道"><a href="#1-打开通道" class="headerlink" title="1 打开通道"></a>1 打开通道</h3><p>Socket 通道有可以直接创建新 socket 通道的工厂方法。但是一个 FileChannel对象却只能通过在一个打开的 <em>RandomAccessFile</em>、<em>FileInputStream</em> 或 <em>FileOutputStream</em> 对象上调用 *getChannel( )*方法来获取。</p>
-<ul>
-<li><p>SocketChannel sc = SocketChannel.open( );</p>
-</li>
-<li><p>FileChannel fc = raf.getChannel( );</p>
-</li>
-<li><p>getChannel虽然 能返回一个相应的 socket 通道对象，但它们却并非新通道的来源，RandomAccessFile.getChannel( )方法才是。</p>
-</li>
-</ul>
-<h3 id="2-使用通道"><a href="#2-使用通道" class="headerlink" title="2 使用通道"></a>2 使用通道</h3><p>如果 一个类同时实现这<em>ReadableByteChannel</em>，<em>WritableByteChannel</em>两个接口，那么它是双向的，可以双向传输数据</p>
-<h2 id="Scatter-Gather"><a href="#Scatter-Gather" class="headerlink" title="Scatter/Gather"></a>Scatter/Gather</h2><ul>
-<li><p>用一个 gather 操作将多个缓冲区的数据组合并发送出去。图 3-5 描述了一个 gather 写操作。数据从缓冲区阵列引用的每个缓冲区中 gather 并被组合成沿 着通道发送的字节流。</p>
-</li>
-<li><p>图3-6 描述了一个 scatter 读操作。从通道传输来的数据被 scatter 到所列缓冲区，依次填充每个 </p>
-<p>缓冲区（从缓冲区的 position 处开始到 limit 处结束）。这里显示的 position 和 limit 值是读操作开 </p>
-<p>始之前的。</p>
-</li>
-</ul>
-<p><img src="/2020/12/20/channel/image/1608106263947.png" alt="1608106263947"></p>
-<ul>
-<li><p>write和read操作</p>
-<ul>
-<li><p>带 offset 和 length 参数版本的 <em>read( )</em> 和 *write( )*方法使得我们可以使用缓冲区阵列的子集 </p>
-<p>缓冲区。这里的 offset 值指哪个缓冲区将开始被使用，而不是指数据的 offset。这里的 length 参 </p>
-<p>数指示要使用的缓冲区数量。</p>
-<p>int bytesRead = channel.write (fiveBuffers, 1, 3);</p>
-</li>
-</ul>
-</li>
-<li><p>优点</p>
-<ul>
-<li>它节省了您来回移动数据的工作，也就避免了缓冲区拷贝和减少了您需要编写、调试的代码数量。由操作系统已经被高度优化来完成此类工作</li>
-</ul>
-</li>
-</ul>
-<h2 id="文件通道"><a href="#文件通道" class="headerlink" title="文件通道"></a>文件通道</h2><ul>
-<li><p>文件通道总是阻塞式的，因此不能被置于非阻塞模式</p>
-</li>
-<li><p><em>FileChannel</em>对象不能直接创建。一个<em>FileChannel</em>实例只能通过在一个打开的file对象（<em>RandomAccessFile</em>、<em>FileInputStream</em>或 <em>FileOutputStream</em>）上调用*getChannel( )*方法 </p>
-<p>获取</p>
-</li>
-<li><p><em>FileChannel</em> 对象是线程安全（thread-safe）的</p>
-</li>
-</ul>
-<p><img src="/2020/12/20/channel/image/1608106790795.png" alt="1608106790795"></p>
-<p><img src="D:\mhc\study_file\知识梳理\netty\nio\image\1608106803235.png" alt="1608106803235"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">FileChannel</span> <span class="keyword">extends</span> <span class="title">AbstractChannel</span> <span class="keyword">implements</span> <span class="title">ByteChannel</span>, <span class="title">GatheringByteChannel</span>, <span class="title">ScatteringByteChannel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// This is a partial API listing</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">long</span> <span class="title">position</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">position</span> <span class="params">(<span class="keyword">long</span> newPosition)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">(ByteBuffer dst)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span> <span class="params">(ByteBuffer dst, <span class="keyword">long</span> position)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">write</span> <span class="params">(ByteBuffer src)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">write</span> <span class="params">(ByteBuffer src, <span class="keyword">long</span> position)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">long</span> <span class="title">size</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">truncate</span> <span class="params">(<span class="keyword">long</span> size)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">force</span> <span class="params">(<span class="keyword">boolean</span> metaData)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>有两种形式的*position( )*方法。第一种，不带参数的，返回当 前文件的position值。返回值是一个长整型（long），表示文件中的当前字节位置; 可以 把 position 设置到超出文件尾，这样做会把 position 设置为指定值而不改变文件大小。</p>
-</li>
-<li><p>倘若此时实现的是一个 *write( )*方法则会引起文件增长以容纳写入的字节，具体行为类似于实现一个绝对 *write( )*并可能导致出现一个文件空洞（假如数据被写入到文件中非连续的位置上，这将导致文件出现在逻辑上不包含数据的区域），如果该文件被顺序读取的话，所有空洞都会被“0”填充但不占用磁盘空间。读取该文件的大小 进程会看到 5,000,021 个字节</p>
-</li>
-<li><p>如果 position 值达到了文件大小的值（文件大小的值可以通过 <em>size( )<em>方法返回），</em>read( )</em> </p>
-<p>方法会返回一个文件尾条件值（-1）。可是，不同于缓冲区的是，如果实现 *write( )*方法时 position </p>
-<p>前进到超过文件大小的值，该文件会扩展以容纳新写入的字节。 </p>
-</li>
-<li><p>当需要减少一个文件的 size 时，*truncate( )*方法会砍掉您所指定的新 size 值之外的所有数据。 </p>
-<p>如果当前 size 大于新 size，超出新 size 的所有字节都会被悄悄地丢弃。</p>
-<p>public abstract void truncate (long size)</p>
-</li>
-<li><p>*force( )*。该方法告诉通道强制将全部待定的修改都应用到磁盘的 文件上。（所有的现代文件系统都会缓存数据和延迟磁盘文件更新以提高性能。调用 *force( )*方法要求文件的所有待定修改立即同步到磁盘。）</p>
-<ul>
-<li><p>force操作意义</p>
-<ul>
-<li><p>对于关键操作如事务 （transaction）处理来说，这一点是非常重要的，可以保证数据完整性和可靠的恢复。</p>
-</li>
-<li><p>对于需要特别保证数据完整性的应用程序，请务必验证一下您计划部署该程序的操作环境的性能。</p>
-</li>
-<li><p>public abstract void force (boolean metaData)；</p>
-<ul>
-<li> *force( )*方法传递 false 值表示在方法返回前只需要同步文件数据的更 改。同步元数据要求操作系统进行至少一次额外的底层 I/O 操作</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="文件锁"><a href="#文件锁" class="headerlink" title="文件锁"></a>文件锁</h3><ul>
-<li><p>文件锁定特性在很大程度上依赖本地的操作系统实现。并非所有的操作系统和文件系统都支持 </p>
-<p>共享文件锁。对于那些不支持的，对一个共享锁的请求会被自动提升为对独占锁的请求。这</p>
-</li>
-<li><p>例如，如果所有的锁都是强制性的（mandatory）而您不及时释放您获得的锁的话，运行在同一操作系统上的其他程序可能会受到影响。</p>
-</li>
-<li><p>要获得一个共享 锁，您必须先以只读权限打开文件，而请求独占锁时则需要写权限。另外，您提供的 position 和 size 参数的值不能是负数；锁可以扩展从而超出文件尾；</p>
-</li>
-<li><p>然后文件增长超出了那块区域，那么新增加 的文件内容将不会受到您的文件锁的保护</p>
-<p>fileChannel.lock (0L, Long.MAX_VALUE, false);</p>
-</li>
-<li><p><em>FileLock</em> 类封装一个锁定的文件区域。一个 <em>FileLock</em> 对象创建之后即有效，直到它的 *release( )*方法被调用或它所关联的通道被关闭或 Java 虚拟机关闭时才会失效。</p>
-</li>
-<li><p>您可以通过调用 *isShared( )*方法来测试一个锁以判断它是共享的还是独占的。</p>
-</li>
-<li><p>在使用完一个锁后而不释放它的话，可能会导致 冲突或者死锁。</p>
-</li>
-<li><p>锁与文件关联，而不是与通道关联。我们使用锁来判优外部进程，而不是判同一个 Java 虚拟机上的线程。</p>
-</li>
-</ul>
-<h3 id="内存映射文件"><a href="#内存映射文件" class="headerlink" title="内存映射文件"></a>内存映射文件</h3><ul>
-<li><p>如果您需要控制多个 Java 线程的并发访问，您可能需要实施您自己的、轻量级的锁定方案。那种情形下，内存映射文件（本章后面会进行详述）可能是一个合适的选择。</p>
-</li>
-<li><p>新的 <em>FileChannel</em> 类提供了一个名为 <em>map( )*的方法，该方法可以在一个打开的文件和一个特殊类型的 *ByteBuffer</em> 之间建立一个虚拟内存映射</p>
-</li>
-<li><p>在 <em>FileChannel</em> 上调用 <em>map( )*方法会创建一个由磁盘文件支持的虚拟内存映射（virtual memory mapping）并在那块虚拟内存空间外部封装一个 *MappedByteBuffer</em> 对象（参见 图 1-6）</p>
-</li>
-</ul>
-<p><img src="/2020/12/20/channel/image/1608108926247.png" alt="1608108926247"></p>
-<ul>
-<li>如果数据缓冲区是按页对齐的，且大小是内建页大小的倍数，那 么，对大多数操作系统而言，其处理效率会大幅提升。（但前提条件是，内核与用户缓冲区必须使用相同的页对齐，缓冲区的大小还必须是磁盘控制器块大小（通常为 512 字节磁盘扇区）的倍<br> 数。操作系统把内存地址空间划分为页，即固定大小的字节组）</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/channel/" data-id="ckiybi0t400012ksz4ii0chld" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/20/hello-world/" class="article-date">
-  <time datetime="2020-12-20T01:56:55.230Z" itemprop="datePublished">2020-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/20/hello-world/">Hello World</a>
+      <a class="article-title" href="/2020/12/20/channel/">通道(channel)</a>
     </h1>
   
 
@@ -324,22 +138,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>通道 API 仅仅描述了可以做什么，通道 实现经常使用操作系统的本地代码。通道接口允许您以一种受控且可移植的方式来访问底层的 I/O服务</li>
+<li><em>InterruptibleChannel</em> 是一个标记接口，当被通道使用时可以标示该通道是可以中断的</li>
+</ul>
         
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+          <p class="article-more-link">
+            <a href="/2020/12/20/channel/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/hello-world/" data-id="ckiybi0t500022kszc9zm3hap" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/20/channel/" data-id="ckiychdbb0001eksz67p709wq" class="article-share-link">分享</a>
       
       
       
@@ -393,19 +204,11 @@
       <ul>
         
           <li>
-            <a href="/2020/12/21/article-title/">article title</a>
+            <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo实现个人博客</a>
           </li>
         
           <li>
-            <a href="/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/">使用Hexo生成博客</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/channel/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/hello-world/">Hello World</a>
+            <a href="/2020/12/20/channel/">通道(channel)</a>
           </li>
         
       </ul>
@@ -417,7 +220,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 

@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>使用Hexo生成博客 | xtzgg的个人博客</title>
+  <title>Hexo实现个人博客 | xtzgg的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1 安装node.js和git 12$ node --version$ npm --version 2 安装hexo-cli工具 1$ npm install -g hexo-cli">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Hexo生成博客">
-<meta property="og:url" content="https://xtzgg.github.io/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="Hexo实现个人博客">
+<meta property="og:url" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="xtzgg的个人博客">
 <meta property="og:description" content="1 安装node.js和git 12$ node --version$ npm --version 2 安装hexo-cli工具 1$ npm install -g hexo-cli">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xtzgg.github.io/images/1608539211754.png">
-<meta property="og:image" content="https://xtzgg.github.io/images/1608539050227.png">
+<meta property="og:image" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539211754.png">
+<meta property="og:image" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539050227.png">
 <meta property="article:published_time" content="2020-12-20T14:56:09.403Z">
-<meta property="article:modified_time" content="2020-12-21T08:46:58.035Z">
+<meta property="article:modified_time" content="2020-12-21T09:00:28.768Z">
 <meta property="article:author" content="xtzgg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xtzgg.github.io/images/1608539211754.png">
+<meta name="twitter:image" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539211754.png">
   
     <link rel="alternate" href="/atom.xml" title="xtzgg的个人博客" type="application/atom+xml">
   
@@ -73,9 +73,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-使用Hexo生成博客" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Hexo实现个人博客" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/" class="article-date">
+    <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
   <time datetime="2020-12-20T14:56:09.403Z" itemprop="datePublished">2020-12-20</time>
 </a>
     
@@ -87,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用Hexo生成博客
+      Hexo实现个人博客
     </h1>
   
 
@@ -118,9 +118,9 @@
 <p>然后生成密钥SSH key：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxxx@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
 <p>生成路径</p>
-<p><img src="/images/1608539211754.png" alt="1608539211754"></p>
+<p><img src="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539211754.png" alt="1608539211754"></p>
 <p> 打开<a href="https://link.zhihu.com/?target=http://github.com/">github</a>，在头像下面点击<code>settings</code>，再点击<code>SSH and GPG keys</code>，新建一个SSH </p>
-<p><img src="/images/1608539050227.png" alt="1608539050227"></p>
+<p><img src="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539050227.png" alt="1608539050227"></p>
 <p>将id_rsa.pub文件内容粘贴到sshkey内容中即可</p>
 </li>
 <li><p>打开博客根目录下的<code>_config.yml</code>文件，修改最后一行的配置：</p>
@@ -138,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/" data-id="ckiybi0t700032ksz2511f40h" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckiychdb50000ekszhdcl53ka" class="article-share-link">分享</a>
       
       
       
@@ -192,19 +192,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/12/21/article-title/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          article title
-        
-      </div>
-    </a>
-  
   
     <a href="/2020/12/20/channel/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">通道(channel)</div>
     </a>
   
 </nav>
@@ -247,19 +238,11 @@
       <ul>
         
           <li>
-            <a href="/2020/12/21/article-title/">article title</a>
+            <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo实现个人博客</a>
           </li>
         
           <li>
-            <a href="/2020/12/20/%E4%BD%BF%E7%94%A8Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2/">使用Hexo生成博客</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/channel/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/hello-world/">Hello World</a>
+            <a href="/2020/12/20/channel/">通道(channel)</a>
           </li>
         
       </ul>
