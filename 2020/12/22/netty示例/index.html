@@ -5,15 +5,15 @@
   
   <title>netty示例代码 | xtzgg的个人博客(系统测试中，未正式使用...)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下面例子只是为了讲解源码  服务端： 1234567891011121314151617181920212223242526272829303132333435363738394041package com.nio.sample.netty.IM.scm1;import io.netty.bootstrap.ServerBootstrap;import io.netty.channel.Chan">
+  <meta name="description" content="下面例子只是为了讲解源码  服务端：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="netty示例代码">
 <meta property="og:url" content="https://xtzgg.github.io/2020/12/22/netty%E7%A4%BA%E4%BE%8B/index.html">
 <meta property="og:site_name" content="xtzgg的个人博客(系统测试中，未正式使用...)">
-<meta property="og:description" content="下面例子只是为了讲解源码  服务端： 1234567891011121314151617181920212223242526272829303132333435363738394041package com.nio.sample.netty.IM.scm1;import io.netty.bootstrap.ServerBootstrap;import io.netty.channel.Chan">
+<meta property="og:description" content="下面例子只是为了讲解源码  服务端：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-22T10:49:30.711Z">
-<meta property="article:modified_time" content="2020-12-23T08:42:36.156Z">
+<meta property="article:modified_time" content="2020-12-24T01:25:54.907Z">
 <meta property="article:author" content="xtzgg">
 <meta name="twitter:card" content="summary">
   
@@ -98,6 +98,8 @@
 <p>下面例子只是为了讲解源码</p>
 </blockquote>
 <p>服务端：</p>
+<a id="more"></a>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nio.sample.netty.IM.scm1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.netty.bootstrap.ServerBootstrap;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelInitializer;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.nio.NioEventLoopGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.socket.nio.NioServerSocketChannel;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.socket.nio.NioSocketChannel;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 功能：</span></span><br><span class="line"><span class="comment"> *  1 服务端和客户端实现基本互通，可以互发消息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerScm</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        startServer();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">startServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        NioEventLoopGroup bossGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">        NioEventLoopGroup workGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        ServerBootstrap serverBootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">        serverBootstrap.group(bossGroup,workGroup)</span><br><span class="line">                .channel(NioServerSocketChannel.class)</span><br><span class="line">                .childHandler(<span class="keyword">new</span> ChannelInitializer&lt;NioSocketChannel&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(NioSocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        ch.pipeline().addLast(<span class="keyword">new</span> ServerHandler());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        serverBootstrap.bind(<span class="number">8888</span>).addListener(future -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span>(future.isSuccess())&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;启动成功&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;启动失败: &quot;</span> + future.cause().getMessage());</span><br><span class="line">                ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>ServerHandler：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nio.sample.netty.IM.scm1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.netty.buffer.ByteBuf;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelHandlerContext;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelInboundHandlerAdapter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerHandler</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx, Object msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ByteBuf byteBuf = (ByteBuf) msg;</span><br><span class="line">        String name = byteBuf.toString(Charset.forName(<span class="string">&quot;utf-8&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;接收客户端消息：&quot;</span> + name);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;服务端回复&quot;</span> + ctx.channel().remoteAddress());</span><br><span class="line">        String answer = <span class="string">&quot;你好！&quot;</span>;</span><br><span class="line">        ctx.channel().writeAndFlush(MsgUtil.getBuf(ctx,answer));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -111,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/22/netty%E7%A4%BA%E4%BE%8B/" data-id="ckj19prdk00024csz254hhtut" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/22/netty%E7%A4%BA%E4%BE%8B/" data-id="ckj261cvq0001c4szaprg9h3r" class="article-share-link">分享</a>
       
       
       
@@ -165,11 +167,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/12/23/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E6%BA%90%E7%A0%81/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E6%BA%90%E7%A0%81/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/12/23/nioEventLoop%E5%90%AF%E5%8A%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          如何利用源码
+          nioEventLoop启动
         
       </div>
     </a>
@@ -224,19 +226,19 @@
           </li>
         
           <li>
-            <a href="/2020/12/23/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E6%BA%90%E7%A0%81/%E6%83%B3%E6%B3%95/">怎么做</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/23/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E6%BA%90%E7%A0%81/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E6%BA%90%E7%A0%81/">如何利用源码</a>
-          </li>
-        
-          <li>
             <a href="/2020/12/22/netty%E7%A4%BA%E4%BE%8B/">netty示例代码</a>
           </li>
         
           <li>
             <a href="/2020/12/22/nioEventLoop%E5%88%9D%E5%A7%8B%E5%8C%96/">nioEventLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/22/pipeline/">pipeline</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo实现个人博客</a>
           </li>
         
       </ul>
