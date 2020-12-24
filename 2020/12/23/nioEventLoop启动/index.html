@@ -3,22 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo实现个人博客 | xtzgg的个人博客(系统测试中，未正式使用...)</title>
+  <title>nioEventLoop启动 | xtzgg的个人博客(系统测试中，未正式使用...)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1 安装node.js和git 12$ node --version$ npm --version 2 安装hexo-cli工具 1$ npm install -g hexo-cli">
+  <meta name="description" content="this is a save">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo实现个人博客">
-<meta property="og:url" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="nioEventLoop启动">
+<meta property="og:url" content="https://xtzgg.github.io/2020/12/23/nioEventLoop%E5%90%AF%E5%8A%A8/index.html">
 <meta property="og:site_name" content="xtzgg的个人博客(系统测试中，未正式使用...)">
-<meta property="og:description" content="1 安装node.js和git 12$ node --version$ npm --version 2 安装hexo-cli工具 1$ npm install -g hexo-cli">
+<meta property="og:description" content="this is a save">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539211754.png">
-<meta property="og:image" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539050227.png">
-<meta property="article:published_time" content="2020-12-20T14:56:09.403Z">
-<meta property="article:modified_time" content="2020-12-21T09:00:28.768Z">
+<meta property="article:published_time" content="2020-12-23T10:10:52.570Z">
+<meta property="article:modified_time" content="2020-12-23T10:27:13.682Z">
 <meta property="article:author" content="xtzgg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539211754.png">
   
     <link rel="alternate" href="/atom.xml" title="xtzgg的个人博客(系统测试中，未正式使用...)" type="application/atom+xml">
   
@@ -73,10 +70,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Hexo实现个人博客" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-nioEventLoop启动" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2020-12-20T14:56:09.403Z" itemprop="datePublished">2020-12-20</time>
+    <a href="/2020/12/23/nioEventLoop%E5%90%AF%E5%8A%A8/" class="article-date">
+  <time datetime="2020-12-23T10:10:52.570Z" itemprop="datePublished">2020-12-23</time>
 </a>
     
   </div>
@@ -87,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo实现个人博客
+      nioEventLoop启动
     </h1>
   
 
@@ -97,48 +94,12 @@
       
         <!-- Table of Contents -->
         
-        <p>1 安装node.js和git</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> <span class="string">node --version</span></span><br><span class="line"><span class="meta">$</span> <span class="string">npm --version</span></span><br></pre></td></tr></table></figure>
-<p>2 安装hexo-cli工具</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> <span class="string">npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure>
- <a id="more"></a> 
-
-<p>3  使用hexo创建博客项目 </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init 文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> 文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install —&gt; 安装博客项目所需的依赖项</span></span><br></pre></td></tr></table></figure>
-<p>4 把写好的markdown文件放置到source/_posts目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo g —&gt; 把Markdown变成HTML页面，hexo就会在public文件夹生成相关html文件</span></span><br></pre></td></tr></table></figure>
-<p>5  运行博客项目, 并访问</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo s</span></span><br><span class="line">访问 localhost:4000</span><br></pre></td></tr></table></figure>
-<p>6 将写好的文档上传到github上</p>
-<ul>
-<li><p>在github创建仓库为：用户名.github.io</p>
-</li>
-<li><p>连接github和本地（设置github的用户名和注册邮箱；如果已连接，忽略此步骤）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;xxxx&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;xxx@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-<p>然后生成密钥SSH key：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxxx@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-<p>生成路径</p>
-<p><img src="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539211754.png" alt="1608539211754"></p>
-<p> 打开<a href="https://link.zhihu.com/?target=http://github.com/">github</a>，在头像下面点击<code>settings</code>，再点击<code>SSH and GPG keys</code>，新建一个SSH </p>
-<p><img src="/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/image/1608539050227.png" alt="1608539050227"></p>
-<p>将id_rsa.pub文件内容粘贴到sshkey内容中即可</p>
-</li>
-<li><p>打开博客根目录下的<code>_config.yml</code>文件，修改最后一行的配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git <span class="comment"># git管理</span></span><br><span class="line">  repository: https://github.com/用户名/用户名.github.io <span class="comment"># 上述建立仓库url</span></span><br><span class="line">  branch: master <span class="comment"># 指定使用的代码分支名</span></span><br></pre></td></tr></table></figure></li>
-<li><p>使用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个文件article-title.md文件</span></span><br><span class="line">hexo new post <span class="string">&quot;article title&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>生成静态网页</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g <span class="comment"># 生成静态网页</span></span><br><span class="line">hexo s <span class="comment"># 本地启动访问</span></span><br><span class="line">hexo clean &amp; hexo d <span class="comment"># 清理并上传github</span></span><br></pre></td></tr></table></figure></li>
-<li><p>访问 https://用户名.github.io即可</p>
-</li>
-<li><p>绑定域名(略)</p>
-</li>
-</ul>
+        <p>this is a save</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xtzgg.github.io/2020/12/20/Hexo%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckj19prdd00004cszhlm43664" class="article-share-link">分享</a>
+      <a data-url="https://xtzgg.github.io/2020/12/23/nioEventLoop%E5%90%AF%E5%8A%A8/" data-id="ckj25szgf0000ussz3h5oamnw" class="article-share-link">分享</a>
       
       
       
@@ -192,19 +153,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/12/22/pipeline/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          pipeline
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/12/20/channel/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/12/23/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90%E6%BA%90%E7%A0%81/%E6%83%B3%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">通道(channel)</div>
+      <div class="article-nav-title">怎么做</div>
     </a>
   
 </nav>
