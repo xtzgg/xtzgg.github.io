@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>16型人格测试 · 发现你的隐藏人格</title>
+<style>
+  :root{--main:#6d5ef2;--main2:#8b5cf6;--bg:#f5f4ff;--text:#2b2b3a;--sub:#7a7a8e;--card:#ffffff;}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:linear-gradient(160deg,#6d5ef2 0%,#8b5cf6 45%,#a78bfa 100%);min-height:100vh;color:var(--text);}
+  .wrap{max-width:520px;margin:0 auto;padding:24px 18px 40px;}
+  /* ── 开始页 ── */
+  #start{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:8vh;}
+  .logo-badge{width:88px;height:88px;border-radius:28px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:#fff;margin-bottom:22px;backdrop-filter:blur(6px);}
+  #start h1{color:#fff;font-size:30px;letter-spacing:2px;margin-bottom:10px;}
+  #start .slogan{color:rgba(255,255,255,.85);font-size:15px;margin-bottom:26px;line-height:1.7;}
+  .info-card{background:rgba(255,255,255,.95);border-radius:18px;padding:20px 22px;text-align:left;width:100%;margin-bottom:26px;box-shadow:0 12px 30px rgba(60,40,150,.25);}
+  .info-card h3{font-size:15px;color:var(--main);margin-bottom:10px;}
+  .info-card li{font-size:13.5px;color:#55556a;line-height:1.9;list-style:none;padding-left:20px;position:relative;}
+  .info-card li::before{content:"✦";position:absolute;left:2px;color:var(--main2);font-size:11px;}
+  .btn-main{display:block;width:100%;padding:16px;border:none;border-radius:16px;background:#fff;color:var(--main);font-size:18px;font-weight:800;letter-spacing:4px;cursor:pointer;box-shadow:0 10px 24px rgba(50,30,140,.35);transition:transform .15s;}
+  .btn-main:active{transform:scale(.97);}
+  .note{color:rgba(255,255,255,.7);font-size:12px;margin-top:14px;}
+  /* ── 答题页 ── */
+  #quiz{display:none;}
+  .progress-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .progress-row .idx{color:#fff;font-size:14px;font-weight:700;opacity:.9;}
+  .progress-row .back{background:none;border:none;color:rgba(255,255,255,.8);font-size:13px;cursor:pointer;padding:4px 8px;}
+  .progress-bar{height:8px;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden;margin-bottom:26px;}
+  .progress-bar i{display:block;height:100%;background:#fff;border-radius:99px;transition:width .25s;}
+  .q-card{background:var(--card);border-radius:20px;padding:26px 22px 22px;box-shadow:0 12px 30px rgba(60,40,150,.25);}
+  .q-tag{display:inline-block;font-size:12px;color:var(--main);background:#efeaff;border-radius:99px;padding:4px 12px;margin-bottom:14px;font-weight:700;}
+  .q-text{font-size:19px;font-weight:700;line-height:1.6;margin-bottom:22px;min-height:60px;}
+  .opt{display:flex;align-items:center;gap:12px;background:#f6f5fd;border:2px solid transparent;border-radius:14px;padding:15px 16px;margin-bottom:12px;cursor:pointer;transition:all .18s;font-size:15px;line-height:1.55;}
+  .opt:last-child{margin-bottom:0;}
+  .opt .abc{flex:none;width:30px;height:30px;border-radius:50%;background:#e6e2ff;color:var(--main);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
+  .opt.sel{border-color:var(--main);background:#efeaff;transform:translateX(4px);}
+  .opt.sel .abc{background:var(--main);color:#fff;}
+  /* ── 结果页 ── */
+  #result{display:none;}
+  .r-card{background:#fff;border-radius:22px;padding:28px 22px;box-shadow:0 12px 30px rgba(60,40,150,.25);text-align:center;margin-bottom:16px;}
+  .r-code{font-size:52px;font-weight:900;letter-spacing:4px;background:linear-gradient(135deg,#6d5ef2,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.15;}
+  .r-name{font-size:21px;font-weight:800;margin-top:4px;}
+  .r-sub{font-size:13px;color:var(--sub);margin-top:6px;}
+  .dim-block{text-align:left;margin-top:22px;padding-top:18px;border-top:1px dashed #e5e3f5;}
+  .dim-line{margin-bottom:14px;}
+  .dim-label{display:flex;justify-content:space-between;font-size:13px;color:#55556a;margin-bottom:6px;}
+  .dim-label b{color:var(--main);}
+  .dim-bar{display:flex;height:10px;border-radius:99px;overflow:hidden;background:#f0eefb;}
+  .dim-bar i{display:block;height:100%;background:linear-gradient(90deg,#6d5ef2,#a855f7);border-radius:99px;transition:width .8s .2s;}
+  .section{text-align:left;background:#fff;border-radius:18px;padding:20px 20px;margin-bottom:14px;box-shadow:0 8px 22px rgba(60,40,150,.18);}
+  .section h4{font-size:15px;color:var(--main);margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+  .section p{font-size:14.5px;color:#4a4a5e;line-height:1.85;}
+  .quote-card{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:18px;padding:20px 22px;text-align:center;color:#fff;font-size:15px;line-height:1.85;margin-bottom:18px;backdrop-filter:blur(4px);}
+  .quote-card p::before{content:"“";font-size:22px;font-weight:800;opacity:.75;margin-right:2px;}
+  .quote-card p::after{content:"”";font-size:22px;font-weight:800;opacity:.75;margin-left:2px;}
+  .btn-ghost{display:block;width:100%;padding:14px;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.12);border-radius:16px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;}
+  .r-foot{color:rgba(255,255,255,.65);font-size:11.5px;text-align:center;margin-top:16px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 开始页 -->
+  <section id="start">
+    <div class="logo-badge">16</div>
+    <h1>16型人格测试</h1>
+    <p class="slogan">48 道专业情景题，定位你的隐藏人格<br>测完自动出结果</p>
+    <div class="info-card">
+      <h3>测试说明</h3>
+      <ul>
+        <li>共 48 题，约 8–12 分钟完成，凭第一直觉作答</li>
+        <li>四个维度：能量来源 / 信息方式 / 决策风格 / 生活节奏</li>
+        <li>结果含人格画像、天赋优势、盲点提醒与职业方向</li>
+        <li>本测试基于荣格类型理论改编，题库为原创内容，仅供自我了解参考</li>
+      </ul>
+    </div>
+    <button class="btn-main" onclick="startQuiz()">开始测试</button>
+    <p class="note">48 题 · 约 8–12 分钟 · 测完自动出完整报告</p>
+  </section>
+
+  <!-- 答题页 -->
+  <section id="quiz">
+    <div class="progress-row">
+      <button class="back" onclick="prevQ()">‹ 上一题</button>
+      <span class="idx" id="qIdx">1 / 32</span>
+    </div>
+    <div class="progress-bar"><i id="pBar" style="width:3%"></i></div>
+    <div class="q-card">
+      <span class="q-tag" id="qTag">能量来源</span>
+      <div class="q-text" id="qText"></div>
+      <div class="opt" id="optA" onclick="choose(0)"><span class="abc">A</span><span id="optAText"></span></div>
+      <div class="opt" id="optB" onclick="choose(1)"><span class="abc">B</span><span id="optBText"></span></div>
+    </div>
+  </section>
+
+  <!-- 结果页 -->
+  <section id="result">
+    <div class="r-card">
+      <div style="font-size:13px;color:#9a97b8;margin-bottom:6px;">你的人格类型是</div>
+      <div class="r-code" id="rCode">INTJ</div>
+      <div class="r-name" id="rName">远见策略家</div>
+      <div class="r-sub" id="rSub">全球约 2% 的人属于这一类型</div>
+      <div class="dim-block" id="dims"></div>
+    </div>
+    <div class="section"><h4>◤ 人格类型深度解读</h4><p id="rLetters"></p></div>
+    <div class="section"><h4>◈ 核心画像</h4><p id="rDesc"></p></div>
+    <div class="section"><h4>✦ 天赋优势</h4><p id="rPros"></p></div>
+    <div class="section"><h4>☂ 盲点提醒</h4><p id="rCons"></p></div>
+    <div class="section"><h4>➤ 职业方向</h4><p id="rWork"></p></div>
+    <div class="section"><h4>✿ 成长建议</h4><p id="rGrowth"></p></div>
+    <div class="section"><h4>❤ 恋爱相处</h4><p id="rRel"></p></div>
+    <div class="quote-card"><p id="rQuote"></p></div>
+    <button class="btn-ghost" onclick="location.reload()">重新测试</button>
+    <p class="r-foot">本测试基于荣格类型理论原创改编，仅供娱乐与自我了解参考</p>
+  </section>
+
+</div>
+
+<script>
+/* ============ 题库（原创内容） ============
+   d: 0=能量来源(E/I) 1=信息方式(S/N) 2=决策风格(T/F) 3=生活节奏(J/P)
+   a=选项一 b=选项二 */
+const Q=[
+ {t:"周五晚上，你更想怎么过？",a:"约上朋友聚会，越热闹越有劲",b:"一个人待着，安静放松才回血",d:0},
+ {t:"在一个陌生人很多的聚会上，你通常？",a:"主动找人搭话，很快熟络",b:"先观察环境，熟一点再开口",d:0},
+ {t:"遇到烦心事，你的第一反应是？",a:"找个人说说，说出来就好多了",b:"自己先消化，不想让人担心",d:0},
+ {t:"朋友对你的评价更接近？",a:"自来熟，跟谁都聊得来",b:"慢热，但熟了很交心",d:0},
+ {t:"排队或等车的时候，你会？",a:"看看周围的人，甚至搭个话",b:"戴上耳机，享受自己的世界",d:0},
+ {t:"团队讨论时，你通常？",a:"想法冒出来就说",b:"在心里想清楚再说",d:0},
+ {t:"一整天的高强度社交之后，你？",a:"还挺兴奋，意犹未尽",b:"急需独处回血，谁也别找我",d:0},
+ {t:"认识新朋友这件事，对你来说？",a:"挺期待，又多一个圈子",b:"有点耗电，宁缺毋滥",d:0},
+ {t:"翻开通讯录，常联系的朋友？",a:"挺多，各个圈子都有",b:"就几个，但都很铁",d:0},
+ {t:"工作累了想休息，你会？",a:"找同事聊聊，放松一下",b:"自己静静待一会儿",d:0},
+ {t:"在群里聊天，你通常是？",a:"爱冒泡，接话很快",b:"潜水居多，偶尔冒头",d:0},
+ {t:"听到周末要团建，你第一反应？",a:"好啊，热闹好玩",b:"唉，又要社交了",d:0},
+ {t:"看小说或电影，你更在意？",a:"情节是否真实、细节是否扎实",b:"背后的隐喻和它想表达什么",d:1},
+ {t:"做事时你更倾向？",a:"按可靠的经验和惯例来",b:"总想试试新方法新路径",d:1},
+ {t:"别人说话时，你常常注意？",a:"具体的事实和细节",b:"言外之意和情绪",d:1},
+ {t:"你更欣赏什么样的人？",a:"务实靠谱、说到做到",b:"脑洞大开、想象力丰富",d:1},
+ {t:"接到一个新任务，你先？",a:"弄清楚步骤和细节",b:"先想它的意义和远景",d:1},
+ {t:"和好友闲聊，你更喜欢聊？",a:"实际发生的事和身边见闻",b:"假设、脑洞和未来的可能性",d:1},
+ {t:"去一个新地方，你认路靠？",a:"记标志物和具体路线",b:"凭大致方向感和直觉",d:1},
+ {t:"你自己更像？",a:"脚踏实地，活在当下",b:"思维跳跃，常想未来",d:1},
+ {t:"你更喜欢哪类内容？",a:"纪录片、真实故事",b:"科幻脑洞、奇思妙想",d:1},
+ {t:"朋友讲完一件事，你更想问？",a:"后来结果怎么样了",b:"你觉得这说明什么",d:1},
+ {t:"你的灵感通常来自？",a:"经验和见过的真实案例",b:"突然冒出来的联想",d:1},
+ {t:"拿到新工具，你先？",a:"看说明书、问教程",b:"自己瞎鼓捣试试",d:1},
+ {t:"朋友向你抱怨工作，你会先？",a:"直接给分析和建议",b:"先安慰情绪，站在他这边",d:2},
+ {t:"做重要决定时，你更看重？",a:"逻辑和利弊分析",b:"内心感受和对人的影响",d:2},
+ {t:"你更讨厌被人评价为？",a:"感情用事、不够理智",b:"冷血、不近人情",d:2},
+ {t:"看到别人争执，你倾向？",a:"分清谁有理、问题在哪",b:"先让双方情绪都缓和下来",d:2},
+ {t:"给别人提意见时，你？",a:"直接指出问题所在",b:"委婉表达，照顾对方感受",d:2},
+ {t:"你认为重要决定应该？",a:"理性权衡后拍板",b:"听从内心直觉",d:2},
+ {t:"朋友搞砸了事情，你会？",a:"帮他复盘哪里出了问题",b:"先陪着难过，再一起想办法",d:2},
+ {t:"什么样的话更能说服你？",a:"有理有据的逻辑论证",b:"真诚用心的态度",d:2},
+ {t:"朋友送的礼物不太合用，你会？",a:"直说心意领了，下次别破费",b:"开心收下，不提不好听的",d:2},
+ {t:"团队里有人拖进度，你会？",a:"直接指出问题、催进度",b:"先私下问问是不是有难处",d:2},
+ {t:"你觉得道歉最重要的是？",a:"认错态度清楚、说明责任",b:"让对方感受到被在乎",d:2},
+ {t:"看网络热点的争论，你更在意？",a:"事实是否清楚、逻辑是否成立",b:"双方的感受和立场",d:2},
+ {t:"出门旅行前，你？",a:"做攻略、订行程，越细越好",b:"带上人和钱包，到了再说",d:3},
+ {t:"你的桌面和文件，通常？",a:"分类清楚、井井有条",b:"有点乱，但我知道东西在哪",d:3},
+ {t:"面对截止日期，你？",a:"提前完成才安心",b:"临近时爆发力最强",d:3},
+ {t:"计划被打乱时，你会？",a:"很烦躁，想赶紧回到正轨",b:"无所谓，随机应变就好",d:3},
+ {t:"你更喜欢的生活是？",a:"确定、有条理、可预期",b:"灵活、留白、有惊喜",d:3},
+ {t:"购物下单时，你？",a:"比价看评测，想清楚再买",b:"看对眼了，心情到位就买",d:3},
+ {t:"安排周末，你倾向？",a:"提前计划好玩什么",b:"看当天状态，临时起意",d:3},
+ {t:"一件大事接近收尾，你？",a:"尽早搞定，心里才踏实",b:"deadline 前灵感最佳",d:3},
+ {t:"你的抽屉或手机相册？",a:"分类清楚、整理有序",b:"有点乱，但自己找得到",d:3},
+ {t:"项目到了收尾阶段，你？",a:"按部就班、稳稳收完",b:"最后几天火力全开",d:3},
+ {t:"更让你心累的是？",a:"计划外突然冒出来的变故",b:"行程被安排得满满当当",d:3},
+ {t:"做事的时候，你习惯？",a:"列好步骤一步步来",b:"凭感觉走，随时调整",d:3}
+];
+const DIMS=[["E","I"],["S","N"],["T","F"],["J","P"]];
+const DIM_NAME=["能量来源","信息方式","决策风格","生活节奏"];
+const DIM_FULL=[
+ ["E 外向","I 内向"],["S 实感","N 直觉"],["T 思考","F 情感"],["J 计划","P 灵活"]
+];
+const LETTER_MEAN={
+ E:"外向：从人际互动和外部世界获取能量，人多反而更有劲",
+ I:"内向：从独处和思考中获取能量，安静时恢复最快",
+ S:"实感：相信看得见的事实，关注具体细节与真实经验",
+ N:"直觉：善于联想，关注规律、模式与未来的可能性",
+ T:"思考：习惯用逻辑与利弊做决定，追求公正合理",
+ F:"情感：优先考虑内心感受与人际和谐，共情力强",
+ J:"计划：喜欢有序安排和确定性，提前规划才安心",
+ P:"灵活：享受临场应变和开放空间，计划常被直觉覆盖"
+};
+/* ============ 16 型人格解析（原创内容） ============ */
+const T={
+"INTJ":{n:"远见策略家",rare:"全球约 2% 的稀有人格",desc:"你习惯站在全局看问题，脑中总有一张未来的蓝图。你相信逻辑与长期主义，讨厌低效和随波逐流；一旦认定目标，就有近乎固执的执行力。表面平静的你，内心其实是一个精密运转的指挥部。",pros:"战略眼光出众，能看穿复杂问题的本质；独立思考，不轻易被他人左右；设定目标后执行力惊人，擅长把远期规划拆成一步步路径。",cons:"容易过度自信于自己的判断，听不进不同意见；情感表达偏少，常让亲近的人感到距离；对自己和他人要求过高，容易长期紧绷。",work:"战略规划、系统架构师、投资分析、科研技术、产品负责人。适合有深度、有难度、能长期积累的领域。",growth:"练习把想法说出口，给亲近的人多留解释空间；偶尔主动示弱，反而让关系更真实。",rel:"和感受型（F）最互补：TA 给你温度，你帮 TA 理清思路。恋爱中你爱得深，记得用行动和语言双倍表达在乎。",quote:"我不是不合群，只是我的群在远方。"},
+"INTP":{n:"逻辑探索者",rare:"全球约 3% 的人格",desc:"你是行走的「为什么」，对世界的运行原理有天然的好奇心。比起结论，你更享受推理的过程；脑子里永远有几个并行运转的开放课题。别人眼里的难题，在你这里是一场有趣的解谜游戏。",pros:"思维敏捷，擅长抽象建模和找规律；不迷信权威，敢于质疑一切想不通的事；遇到复杂系统时如鱼得水。",cons:"想得多、动手慢，容易中途换兴趣；对琐碎执行和重复劳动缺乏耐心；不太在意生活细节，桌面和作息常常放飞。",work:"算法研发、数据分析、技术架构、咨询顾问、科普与写作。适合允许深度思考、自由探索的环境。",growth:"给每个点子设一个『先交付再完善』的节点，逼自己先交一版；把想法写下来，别让灵感只在脑子里打转。",rel:"和计划型（J）在一起生活更落地；多给伴侣一些情绪回应，少一点『为什么不这样想』，关系会更暖。",quote:"结论不重要，逻辑链才迷人。"},
+"ENTJ":{n:"果决统帅",rare:"全球约 2% 的领导型人格",desc:"你天生带着「这事归我管」的气场，目标感极强，看不得低效和拖延。你擅长调动资源、推动变革，团队因为你而提速。对你来说，没有什么目标是拆解之后拿不下来的。",pros:"决策果断，从不拖泥带水；组织协调力强，能把人和事安排得明明白白；抗压能力出色，越是大事越冷静。",cons:"过于追求效率，容易忽略他人感受，给人压迫感；对「慢热型」的人耐心不足；工作狂倾向明显，需注意生活平衡。",work:"管理岗位、创业、项目负责人、投资与管理咨询。适合有明确目标、需要决策力和推动力的舞台。",growth:"重大决定前，先问一圈身边人的感受；把『人』写进你的成本表，你才会从能走向帅。",rel:"适合有主见、能接住你的伴侣，但别把恋爱谈成项目管理；把强势留给工作，把温柔留给 TA。",quote:"要么做好，要么让开。"},
+"ENTP":{n:"机敏辩论家",rare:"全球约 3% 的人格",desc:"你的大脑是一台点子发生器，喜欢挑战常规、拆解一切概念。和你聊天永远不缺新角度，你享受思维交锋胜过标准答案。规则在你眼里不是墙，而是用来优化的初始参数。",pros:"创意源源不断，擅长从夹缝里找到新解法；反应快、口才好，任何场合都能接住话题；敢于打破僵局，天然的开路者。",cons:"起点多、收尾少，容易三分钟热度；享受辩论，有时无意间伤人不自知；对重复性事务极其不耐烦。",work:"创业、产品经理、市场策划、内容创作、商业咨询。适合变化快、需要新想法的环境。",growth:"给每个点子装一个截止日期，完成比完美更重要；把辩论留给观点，别带到感情里去。",rel:"需要一个既能接住你脑洞、又不被你带节奏的人；信任靠小事积累，别光靠聪明取胜。",quote:"规则是用来优化的，不是用来遵守的。"},
+"INFJ":{n:"洞察理想者",rare:"全球约 1% 的最稀有类型",desc:"你安静，但内心有一套关于「世界应该怎样」的坚持。你能敏锐感知他人的情绪和动机，又始终保持自己的深度思考。外表波澜不惊，内心其实装着一整个理想国。",pros:"洞察人心，常能一眼看穿事情背后的真相；信念坚定，认定的方向很难被带偏；文字与共情天赋出色，能治愈人心。",cons:"容易内耗和过度承担，把别人的问题背在自己身上；对冲突极度敏感，常选择沉默消化；理想主义，容易对现实失望。",work:"心理方向、教育、写作与内容创作、公益策划、用户研究。适合有使命感、能沉淀深度价值的领域。",growth:"把『我没事』改成『我需要帮助』；给理想配一个最小可执行的起点，先迈出半步。",rel:"你值得被理解，也值得把不安说出口；与其让 TA 猜，不如直接告诉他你想要怎样的爱。",quote:"话不多，但每个字都算数。"},
+"INFP":{n:"温柔理想家",rare:"全球约 4% 的人格",desc:"你的内心像一座秘密花园，丰富、柔软、自成一界。你重视真实、价值观和意义感，温柔却有自己的原则；为热爱的人和事，可以爆发出让人惊讶的能量。",pros:"创造力强，审美和表达天然细腻；真诚，从不虚与委蛇；对他人有天然的疗愈感，是朋友心中「最干净的存在」。",cons:"容易理想化，被现实打中时格外疼；回避冲突，有话常憋在心里；情绪易受环境影响，需要独处充电。",work:"文学艺术创作、设计、心理健康、教育公益、内容运营。适合有表达空间、价值观契合的工作。",growth:"把情绪说出来而不是咽下去，内耗会少一半；学会温柔地拒绝，边界也是爱自己。",rel:"你需要懂你、又肯给你自由的人；别只报喜不报忧，让 TA 走进你的世界，你会轻松很多。",quote:"世界很吵，我在自己的花园里挺好。"},
+"ENFJ":{n:"温暖引领者",rare:"全球约 3% 的人格",desc:"你是人群中的「小太阳导师」，天然关心别人的成长和感受。你擅长把愿景讲得动人，让身边人愿意跟着你走；你的热忱和责任感，让团队有安全感。",pros:"感染力强，擅长激励和凝聚他人；组织与关怀兼备，是天然的团队核心；对他人潜力的判断常常很准。",cons:"太在意「被需要」，容易牺牲自己成全别人；对批评敏感，被否定时会自我怀疑；不懂拒绝，日程常常过载。",work:"培训讲师、HR、团队管理、教育、新媒体运营。适合与人打交道、能影响和成就他人的角色。",growth:"把『照顾别人』的清单划掉一半，把自己先照顾好；给情绪和日程都留出留白。",rel:"你是付出型的人，但要选一个懂得回报的人；学会接受被照顾，关系才会平衡。",quote:"你变好，我就开心。"},
+"ENFP":{n:"热忱创意家",rare:"全球约 8% 的人气类型",desc:"在你的世界里，一切皆有可能。热情、脑洞、感染力是你的标签——你能瞬间点燃一群人，也常常被自己的新点子牵着跑。对你来说，人生最大的成本是不去尝试。",pros:"创意与共情兼备，人缘极好；适应力强，到哪都能快速扎根；善于发现机会和可能性，是天生的连接者。",cons:"注意力跳跃，容易同时开十个坑；情绪起伏明显，上头和冷却都很快；讨厌重复和琐碎，收尾能力常被吐槽。",work:"创意策划、主持与内容创作、市场营销、初创团队核心成员。适合自由度高的创意环境。",growth:"同时开的项目不超过三个，给热情装个刹车；把想法写成计划，让灵感落地开花。",rel:"适合给你自由、又能托底的人；情绪上头时先停三秒，再决定要不要说气话。",quote:"人生是旷野，我先去探探路。"},
+"ISTJ":{n:"严谨执行者",rare:"全球约 12% 的中坚力量",desc:"你是最让人放心的存在：说到做到，细节到位。你尊重规则和经验，用稳定和可靠一点点构建自己的信誉。别人觉得枯燥的事，你能做得又稳又好。",pros:"责任心极强，答应的事从不掉链子；条理清晰，擅长流程和秩序；持续稳定，是组织的压舱石。",cons:"变通较慢，对「想一出是一出」零容忍；过于依赖既有方法，有时错过新可能；不擅长表达情绪，压力容易自己扛。",work:"财务审计、行政管理、质量管理、工程技术、公共事务。适合规则明确、重视专业性的岗位。",growth:"每周做一件计划外的小事，让生活重新开窗；想说的话及时说，别攒成误会。",rel:"你的可靠是最深的浪漫，但别用默默付出代替表白；多问一句『在想什么』，感情会升温。",quote:"答应的事，就一定会做到。"},
+"ISFJ":{n:"可靠守护者",rare:"全球约 13% 的温暖担当",desc:"你温和、细心、记性好，总能注意到别人忽略的需要。你不喜欢张扬，但身边所有人都知道：有事找你，准没错。你用日复一日的体贴，默默守着自己在意的人。",pros:"体贴周到，总能先一步想到别人的需要；忠诚可靠，答应就一定做到；观察入微，记忆力极强。",cons:"不擅长拒绝，习惯把压力自己扛；过度在意他人评价；改变会让你不安，需要时间适应新环境。",work:"教育、医疗健康、行政人事、客户服务、图书档案。适合有温度、需要细心和稳定的领域。",growth:"把『没问题』改成『让我想想』，先照顾好自己的感受再答应别人。",rel:"你习惯照顾人，也请相信对方愿意照顾你；把需要说出口，关系才能慢慢对等。",quote:"我在，你别怕。"},
+"ESTJ":{n:"务实管理者",rare:"全球约 9% 的执行骨干",desc:"你务实高效、逻辑分明，天生适合「管事」。你相信制度和流程，看不得含糊其辞；混乱的局面到你手上，总能迅速理出头绪。你是团队当之无愧的定海神针。",pros:"组织能力强，标准清晰，推进有力；现实感极佳，不画大饼；危机时刻靠得住，能快速拍板。",cons:"有时过于强势直接，容易忽略情绪层面；对「佛系」的人缺乏耐心；规则之外变通不足。",work:"运营管理、项目负责人、销售负责人、公共事务。适合有秩序、需要执行力和管理力的岗位。",growth:"做决定前多问一句『大家感觉怎么样』；把对事和对人分开，团队会更暖。",rel:"别把效率带回家里，恋爱不是绩效；多听少判，对方的笑容会更多。",quote:"别讲困难，讲方案。"},
+"ESFJ":{n:"热心东道主",rare:"全球约 12% 的氛围担当",desc:"你天生会照顾人，聚会的核心永远是你。你在意和谐，愿意为身边人的开心付出；大家眼里的「靠谱老好人」，其实是把所有人的喜好都记在心里的有心人。",pros:"亲和力满分，走到哪都受欢迎；组织和统筹聚会事务的高手；忠诚度极高，对朋友有求必应。",cons:"过度在意他人评价，容易讨好委屈自己；不懂说「不」，常被琐事缠身；冲突面前倾向于和稀泥。",work:"活动策划、HR、教育服务、客户关系、社群运营。适合与人打交道、传递温度的岗位。",growth:"分清『友好』和『讨好』，学会先满足自己；留一个自己的爱好，别把价值都挂在别人身上。",rel:"你对 TA 好到连 TA 都紧张，先问自己：这是 TA 要的，还是你想给的？",quote:"大家都开心，才是真的开心。"},
+"ISTP":{n:"冷静巧匠",rare:"全球约 5% 的技术流",desc:"你话不多，手很巧。你享受拆解和动手的过程，遇到危机反而最冷静；平时低调得像个路人，关键时刻却是所有人里最靠得住的那个。",pros:"动手能力极强，擅长和「物」打交道；临危不乱，突发状况中头脑最清楚；解决问题直接有效，从不内耗。",cons:"不爱表达，心事和观点常憋着；对长期规划和宏大叙事兴趣不高；过度独立，亲密关系里显得疏离。",work:"工程技术、机械制造、维修技师、外科医疗、特种驾驶、独立开发。适合实操性强、靠手艺说话的领域。",growth:"把灵感随手记下来，别让好主意溜走；定期多开口聊聊，你的沉默里其实有温柔。",rel:"对爱的人多说话，让 TA 进入你的世界；稳定比惊喜更值得经营。",quote:"别慌，让我看看。"},
+"ISFP":{n:"随性艺术家",rare:"全球约 9% 的宝藏人格",desc:"你温和低调，却有极高的审美和感受力。你不喜欢争抢，只按自己的节奏生活；看似漫不经心，其实心里对「什么是美的、什么值得爱」门儿清。",pros:"审美天赋出众，五感敏锐；共情而温柔，让人如沐春风；行动低调务实，用作品而非声音说话。",cons:"计划性弱，常被 deadline 追着跑；面对冲突习惯回避；对自己要求苛刻，容易自我怀疑。",work:"设计、摄影、艺术创作、美食手作、生活美学。适合能发挥审美、节奏自由的领域。",growth:"给重要的事设一个宽松的截止线，别让拖延错过当下；情绪来了，说出来比冷处理强。",rel:"适合温柔、不纠缠的伴侣；你也别把心事全藏起来，TA 不是读心专家，说出来的爱才有回声。",quote:"不着急，我在慢慢发光。"},
+"ESTP":{n:"行动冒险家",rare:"全球约 4% 的行动派",desc:"你信奉「干了再说」，是行动力天花板。你反应极快，越是突发状况越兴奋；别人还在权衡利弊，你已经干完一版拿到反馈了。你是天生的机会猎手。",pros:"执行力爆表，从不空谈；危机处理能力极强，越乱越清醒；社交直接高效，谈判桌上有优势。",cons:"耐心不足，讨厌漫长铺垫；冒险有余而复盘不足，偶尔摔跟头；冲动消费与冲动决策双高。",work:"销售、创业、体育赛事、危机公关、投资交易。适合节奏快、奖励即时、凭结果说话的战场。",growth:"冲动前先问一句『明天我还会想要吗』；给自己留一条后路，比一次漂亮冒险更值钱。",rel:"给亲密关系多一点耐心，新鲜感不是终点；偶尔享受平淡，你们会走得更久。",quote:"想都是问题，做才有答案。"},
+"ESFP":{n:"快乐氛围王",rare:"全球约 9% 的人间开心果",desc:"有你的地方就有笑声。你享受当下的每一刻，把生活过成一场即兴演出；朋友眼里，你是朋友圈里最鲜活、最提气的存在。苦日子到你嘴里，都能讲成段子。",pros:"感染力极强，是气氛的救星；活在当下，幸福感知力高；审美和表现力出色，镜头感极佳。",cons:"计划性偏弱，钱和日程都靠感觉；容易冲动，三分钟热度；不喜欢深度思考和长线布局。",work:"主播主持、演艺表演、活动执行、销售服务。适合聚光灯下、与人互动的鲜活场景。",growth:"重要的事写进日程，别只靠热情；存钱不是束缚，是给快乐留好退路。",rel:"你适合热闹，但也别只当开心果；把烦恼分一半给 TA，你们会更亲密。",quote:"快乐是正事，其他慢慢说。"}
+};
+
+/* ============ 逻辑 ============ */
+let cur=0; const ans=new Array(Q.length).fill(-1);
+const DIMTAG=["能量来源","信息方式","决策风格","生活节奏"];
+function show(id){["start","quiz","result"].forEach(s=>document.getElementById(s).style.display=(s===id?"block":"none"));}
+function startQuiz(){cur=0;show("quiz");renderQ();}
+function renderQ(){
+  const q=Q[cur];
+  document.getElementById("qIdx").textContent=(cur+1)+" / "+Q.length;
+  document.getElementById("pBar").style.width=Math.round((cur+1)/Q.length*100)+"%";
+  document.getElementById("qTag").textContent=DIMTAG[q.d];
+  document.getElementById("qText").textContent=q.t;
+  document.getElementById("optAText").textContent=q.a;
+  document.getElementById("optBText").textContent=q.b;
+  document.getElementById("optA").classList.toggle("sel",ans[cur]===0);
+  document.getElementById("optB").classList.toggle("sel",ans[cur]===1);
+  window.scrollTo(0,0);
+}
+function prevQ(){if(cur>0){cur--;renderQ();}}
+function choose(i){
+  ans[cur]=i;
+  document.getElementById(i===0?"optA":"optB").classList.add("sel");
+  document.getElementById(i===0?"optB":"optA").classList.remove("sel");
+  setTimeout(()=>{
+    if(cur<Q.length-1){cur++;renderQ();}
+    else{calc();}
+  },220);
+}
+function calc(){
+  const cnt=[[0,0],[0,0],[0,0],[0,0]];
+  ans.forEach((v,i)=>{if(v>=0)cnt[Q[i].d][v]++;});
+  let code="";
+  const dimHtml=[];
+  for(let d=0;d<4;d++){
+    const first=cnt[d][0]>=cnt[d][1];
+    const letter=first?DIMS[d][0]:DIMS[d][1];
+    code+=letter;
+    const pct=Math.round(Math.max(cnt[d][0],cnt[d][1])/12*100);
+    const won=first?DIM_FULL[d][0]:DIM_FULL[d][1];
+    const lost=first?DIM_FULL[d][1]:DIM_FULL[d][0];
+    dimHtml.push(`<div class="dim-line"><div class="dim-label"><span>${DIM_NAME[d]}</span><b>${letter} ${pct}%</b></div><div class="dim-bar"><i style="width:${pct}%"></i></div><div style="font-size:11px;color:#9a97b8;margin-top:4px;text-align:right;">${won} &gt; ${lost}</div></div>`);
+  }
+  const r=T[code];
+  document.getElementById("rCode").textContent=code;
+  document.getElementById("rName").textContent=r.n;
+  document.getElementById("rSub").textContent=r.rare;
+  document.getElementById("dims").innerHTML=dimHtml.join("");
+  document.getElementById("rDesc").textContent=r.desc;
+  document.getElementById("rPros").textContent=r.pros;
+  document.getElementById("rCons").textContent=r.cons;
+  document.getElementById("rWork").textContent=r.work;
+  document.getElementById("rGrowth").textContent=r.growth;
+  document.getElementById("rRel").textContent=r.rel;
+  const lettersHtml=code.split("").map(L=>`<div style="margin-bottom:8px;"><b style="color:var(--main);font-size:17px;">${L}</b> <span>${LETTER_MEAN[L]}</span></div>`).join("");
+  document.getElementById("rLetters").innerHTML=lettersHtml;
+  document.getElementById("rQuote").textContent=r.quote;
+  show("result");
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
